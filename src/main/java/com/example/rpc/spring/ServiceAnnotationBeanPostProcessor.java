@@ -2,7 +2,6 @@ package com.example.rpc.spring;
 
 import com.example.rpc.annotation.Service;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.config.SingletonBeanRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -29,15 +28,13 @@ import static org.springframework.context.annotation.AnnotationConfigUtils.CONFI
  * @date 2021/6/11.
  */
 public class ServiceAnnotationBeanPostProcessor implements BeanDefinitionRegistryPostProcessor, EnvironmentAware,
-        ResourceLoaderAware, BeanClassLoaderAware {
+        ResourceLoaderAware {
 
     private final Set<String> packagesToScan;
 
     private Environment environment;
 
     private ResourceLoader resourceLoader;
-
-    private ClassLoader classLoader;
 
     public ServiceAnnotationBeanPostProcessor(String... packagesToScan) {
         this(Arrays.asList(packagesToScan));
@@ -49,11 +46,6 @@ public class ServiceAnnotationBeanPostProcessor implements BeanDefinitionRegistr
 
     public ServiceAnnotationBeanPostProcessor(Set<String> packagesToScan) {
         this.packagesToScan = packagesToScan;
-    }
-
-    @Override
-    public void setBeanClassLoader(ClassLoader classLoader) {
-        this.classLoader = classLoader;
     }
 
     @Override
