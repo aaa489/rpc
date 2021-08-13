@@ -1,5 +1,4 @@
 # rpc
-my rpc freamwork
 基于dubbo的架构手撸rpc框架，主要功能如下：
 - 实现本地化调用
 - 实现注册中心
